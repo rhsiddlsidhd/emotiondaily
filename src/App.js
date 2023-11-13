@@ -36,46 +36,45 @@ const reducer = (state, action) => {
   return newState;
 };
 
-export const DiaryStateContext = React.createContext();
-export const DiaryDispatchContext = React.createContext();
-
 const dummyData = [
   {
     id: 1,
     emotion: 1,
     content: "오늘의일기 1번",
-    date: 1698299362265,
+    date: 1699860436082,
   },
+
   {
     id: 2,
     emotion: 2,
     content: "오늘의일기 2번",
-    date: 1698299362266,
+    date: 1699860436083,
   },
   {
     id: 3,
     emotion: 3,
     content: "오늘의일기 3번",
-    date: 1698299362267,
+    date: 1699860436084,
   },
   {
     id: 4,
     emotion: 4,
     content: "오늘의일기 4번",
-    date: 1698299362268,
+    date: 1699860436085,
   },
   {
     id: 5,
     emotion: 5,
     content: "오늘의일기 5번",
-    date: 1698299362269,
+    date: 1699860436086,
   },
 ];
 
 function App() {
   const [data, dispatch] = useReducer(reducer, dummyData);
 
-  console.log(new Date().getTime());
+  //현재 시간을 밀리초 단위로 나타내는것
+  // console.log("여기요", new Date().getTime());
 
   const dataId = useRef(0);
   //CREATE
@@ -108,9 +107,6 @@ function App() {
     });
   };
 
-  // const env = process.env;
-  // env.PUBLIC_URL = env.PUBLIC_URL || "";
-  // 하단에 img process.env.PUBLIC_URL 작동 안할시 작성
   return (
     <DiaryStateContext.Provider value={data}>
       <DiaryDispatchContext.Provider
@@ -122,13 +118,6 @@ function App() {
       >
         <BrowserRouter>
           <div className="App">
-            {/* process.env.PUBLIC_URL ) public 디렉토리에 대한경로를 바로 쓸수 있는 명령어 */}
-            {/* <img src={process.env.PUBLIC_URL + `/assets/emotion1.png`} />
-        <img src={process.env.PUBLIC_URL + `/assets/emotion2.png`} />
-        <img src={process.env.PUBLIC_URL + `/assets/emotion3.png`} />
-        <img src={process.env.PUBLIC_URL + `/assets/emotion4.png`} />
-        <img src={process.env.PUBLIC_URL + `/assets/emotion5.png`} /> */}
-
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/new" element={<New />} />
@@ -143,3 +132,5 @@ function App() {
 }
 
 export default App;
+export const DiaryStateContext = React.createContext();
+export const DiaryDispatchContext = React.createContext();
