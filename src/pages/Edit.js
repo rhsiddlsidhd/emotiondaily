@@ -6,7 +6,7 @@ import DiaryEdit from "../components/DiaryEdit";
 
 const Edit = () => {
   const [originData, setOriginData] = useState();
-  console.log("여기요", originData);
+  // console.log("여기요", originData);
   const navigate = useNavigate();
   const { id } = useParams();
   // console.log(id);
