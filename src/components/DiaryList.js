@@ -46,7 +46,7 @@ const DiaryList = ({ diaryList }) => {
     };
 
     const compare = (a, b) => {
-      if (sortType === "latest") {
+      if (sortType === "lastest") {
         //parseInt 문자열을 숫자로 바꿔주는 함수
         return parseInt(b.date) - parseInt(a.date);
       } else {

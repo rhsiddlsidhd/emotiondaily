@@ -76,7 +76,7 @@ function App() {
   //현재 시간을 밀리초 단위로 나타내는것
   // console.log("여기요", new Date().getTime());
 
-  const dataId = useRef(0);
+  const dataId = useRef(6);
   //CREATE
   const onCreate = (date, content, emotion) => {
     dispatch({
