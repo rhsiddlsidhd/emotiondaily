@@ -17,7 +17,7 @@ const DiaryEdit = ({ isEdit, originData }) => {
   const navigate = useNavigate();
   const [date, setDate] = useState(getStringDate(new Date()));
   // console.log(getStringDate(new Date()));
-  const { onCreate, onEdit } = useContext(DiaryDispatchContext);
+  const { onCreate, onEdit, onRemove } = useContext(DiaryDispatchContext);
 
   const handleClickEmotion = (emotion) => {
     setEmotion(emotion);
@@ -41,9 +41,15 @@ const DiaryEdit = ({ isEdit, originData }) => {
       }
     }
 
-    onCreate(date, content, emotion);
     //replace 뒤로가기를 해서 못오게 막을것이다!!
     navigate("/", { replace: true });
+  };
+
+  const handleRemove = () => {
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      onRemove(originData.id);
+      navigate("/", { replace: true });
+    }
   };
 
   useEffect(() => {
@@ -59,6 +65,15 @@ const DiaryEdit = ({ isEdit, originData }) => {
         headText={isEdit ? "일기 수정하기" : `새 일기 쓰기`}
         leftChild={
           <MyButton text={"< 뒤로가기"} onClick={() => navigate(-1)} />
+        }
+        rightchild={
+          isEdit && (
+            <MyButton
+              text={"삭제하기"}
+              type={"negative"}
+              onClick={handleRemove}
+            />
+          )
         }
       />
       <div>
