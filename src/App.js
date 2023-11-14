@@ -50,7 +50,7 @@ function App() {
       console.log(diaryList);
       console.log(dataId);
 
-      dispatch({ type: "Init", data: diaryList });
+      dispatch({ type: "INIT", data: diaryList });
     }
   }, []);
 

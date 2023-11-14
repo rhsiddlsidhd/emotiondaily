@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MyButton from "./MyButton";
 import DiaryItem from "./DiaryItem";
@@ -14,7 +14,7 @@ const filterOptionList = [
   { value: "bad", name: "나쁜 감정만" },
 ];
 
-const ControlMenu = ({ value, onChange, optionList }) => {
+const ControlMenu = React.memo(({ value, onChange, optionList }) => {
   return (
     <select
       className="ControlMenu"
@@ -28,11 +28,11 @@ const ControlMenu = ({ value, onChange, optionList }) => {
       ))}
     </select>
   );
-};
+});
 
 const DiaryList = ({ diaryList }) => {
   const Navigate = useNavigate();
-  const [sortType, setSortType] = useState("lastest");
+  const [sortType, setSortType] = useState("latest");
   const [filter, setFilter] = useState("all");
 
   //필터기능
@@ -46,7 +46,7 @@ const DiaryList = ({ diaryList }) => {
     };
 
     const compare = (a, b) => {
-      if (sortType === "lastest") {
+      if (sortType === "latest") {
         //parseInt 문자열을 숫자로 바꿔주는 함수
         return parseInt(b.date) - parseInt(a.date);
       } else {
@@ -97,8 +97,7 @@ const DiaryList = ({ diaryList }) => {
   );
 };
 
-DiaryList.defualtProps = {
+DiaryList.defaultProps = {
   diaryList: [],
 };
-
-export default DiaryList;
+export default React.memo(DiaryList);
