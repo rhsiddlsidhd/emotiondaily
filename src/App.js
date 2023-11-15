@@ -46,11 +46,15 @@ function App() {
       const diaryList = JSON.parse(localData).sort((a, b) => {
         return parseInt(b.id) - parseInt(a.id);
       });
-      dataId.current = parseInt(diaryList[0].id) + 1;
-      console.log(diaryList);
-      console.log(dataId);
 
-      dispatch({ type: "INIT", data: diaryList });
+      if (diaryList.length > 1) {
+        dataId.current = parseInt(diaryList[0].id) + 1;
+        console.log(diaryList);
+        console.log(dataId);
+
+        //새로고침해도 웹화면에 그대로 나와있음
+        dispatch({ type: "INIT", data: diaryList });
+      }
     }
   }, []);
 
